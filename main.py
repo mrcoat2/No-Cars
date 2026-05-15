@@ -1,15 +1,15 @@
 import pygame
+import ui
 import objects
 
 # 1. Initialize Pygame
-pygame.init()
-
-# 2. Set up the display window
-screen = pygame.display.set_mode([1080, 720])
-pygame.display.set_caption("My First Pygame")
+CarUI = ui.UI()
+screen = CarUI.screen
 
 # 3. Game Loop
 running = True
+
+CarUI.new_road(200,200,200,600)
 while running:
     # Check for events (like clicking the 'X' button)
     for event in pygame.event.get():
@@ -18,7 +18,7 @@ while running:
 
     # 4. Drawing
     screen.fill((0, 255, 0))  # Fill background with white
-    pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)  # Draw blue circle
+    CarUI.draw_all()  # Draw blue circle
 
     # 5. Update the display
     pygame.display.flip()
