@@ -13,10 +13,14 @@ class UI:
         self.objects.append(obj)
 
     def new_road_tree(self, start_x, start_y):
-        self.add_object(objects.RoadNode(0, start_x, start_y))
-    
+        node = objects.RoadNode(0, start_x, start_y)
+        self.add_object(node)
+        return node
+
     def new_road_node(self, start_node, end_x, end_y):
-        self.add_object(objects.RoadNode(start_node, end_x, end_y))
+        node = objects.RoadNode(start_node, end_x, end_y)
+        self.add_object(node)
+        return node
 
     def new_car(self, x, y):
         self.add_object(objects.Car(x, y))

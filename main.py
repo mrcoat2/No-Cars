@@ -9,7 +9,10 @@ screen = CarUI.screen
 # 3. Game Loop
 running = True
 
-CarUI.new_road_tree(200,200)
+road_p_one = CarUI.new_road_tree(200,200)
+road_p_two = CarUI.new_road_node(road_p_one, 200, 500)
+road_p_three = CarUI.new_road_node(road_p_two, 500, 500)
+road_p_four = CarUI.new_road_node(road_p_three, 500, 800)
 CarUI.new_car(200,250)
 
 while running:

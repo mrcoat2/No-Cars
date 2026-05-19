@@ -8,8 +8,8 @@ CAR_SIZE = 20
 
 class TopRoadNode:
     def __init__(self, start_x, start_y):
-        self.start_x = start_x
-        self.start_y = start_y
+        self.p_x = start_x
+        self.p_y = start_y
 
 class RoadNode:
     def __init__(self, start_node, end_x, end_y):
@@ -18,14 +18,14 @@ class RoadNode:
         else:
             self.start_node = start_node
 
-        self.end_x = end_x
-        self.end_y = end_y
+        self.p_x = end_x
+        self.p_y = end_y
         
         self.color = ROAD_COLOR
         self.width = ROAD_WIDTH
     
     def draw(self, screen):
-        pygame.draw.line(screen, self.color, (self.start_x, self.start_y), (self.end_x, self.end_y), self.width)
+        pygame.draw.line(screen, self.color, (self.start_node.p_x, self.start_node.p_y), (self.p_x, self.p_y), self.width)
 
 class Car:
     def __init__(self, x, y):
