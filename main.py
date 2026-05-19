@@ -9,7 +9,9 @@ screen = CarUI.screen
 # 3. Game Loop
 running = True
 
-CarUI.new_road(200,200,200,600)
+CarUI.new_road_tree(200,200)
+CarUI.new_car(200,250)
+
 while running:
     # Check for events (like clicking the 'X' button)
     for event in pygame.event.get():
