@@ -1,5 +1,6 @@
 import ui
 import pygame
+import math
 
 ROAD_COLOR = (54, 53, 52)
 ROAD_WIDTH = 50
@@ -25,7 +26,26 @@ class RoadNode:
         self.width = ROAD_WIDTH
     
     def draw(self, screen):
-        pygame.draw.line(screen, self.color, (self.start_node.p_x, self.start_node.p_y), (self.p_x, self.p_y), self.width)
+        # Start line half a road width back and end further
+        # Calculate angle
+        run = self.start_node.p_x - self.p_x
+        rise = self.start_node.p_y - self.p_y
+        if run == 0:
+            start_draw_x = self.start_node.p_x
+            start_draw_y = self.start_node.p_y - ROAD_WIDTH/2
+
+            end_draw_x = self.p_x
+            end_draw_y = self.p_y + ROAD_WIDTH/2
+        else:
+            slope = rise / run
+            theta = math.atan(slope)
+            start_draw_x = self.start_node.p_x - math.cos(theta) * ROAD_WIDTH/2
+            start_draw_y = self.start_node.p_y - math.sin(theta) * ROAD_WIDTH/2
+
+            end_draw_x = self.p_x + math.cos(theta) * ROAD_WIDTH/2
+            end_draw_y = self.p_y + math.sin(theta) * ROAD_WIDTH/2
+
+        pygame.draw.line(screen, self.color, (start_draw_x, start_draw_y), (end_draw_x, end_draw_y), self.width)
 
 class Car:
     def __init__(self, x, y):
