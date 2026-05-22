@@ -8,6 +8,7 @@ class UI:
         self.screen = pygame.display.set_mode(window_size)
         pygame.display.set_caption("Self driving cars")
         self.objects = []
+        self.cars = []
         
     def add_object(self, obj):
         self.objects.append(obj)
@@ -22,8 +23,14 @@ class UI:
         self.add_object(node)
         return node
 
-    def new_car(self, x, y):
-        self.add_object(objects.Car(x, y))
+    def new_car(self, sock):
+        car = objects.Car(sock)
+        self.add_object(car)
+        self.cars.append(car)
+
+    def audit_cars(self):
+        for car in self.cars:
+            car.audit()
 
     def draw_all(self):
         for obj in self.objects:
